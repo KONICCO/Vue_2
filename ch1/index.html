@@ -11,7 +11,35 @@
 
 <body>
     <div id="app">
-        <h2>{{ name }}</h2>
+        <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+
+        <div class="navbar navbar-light bg-light fix-top" v-if="cart.length > 0">
+            <div class="navbar-text ml-auto">
+                <b>cart:</b>
+                <span class="badge badge-pill badge-success">{{ cart.length }}</span>
+            </div>
+        </div>
+        <br>
+        <!-- handling input -->
+        <div class="form-inline mr-auto">
+            <label for="" class="mr-2">Max </label>
+            <input type="number" class="form-control mr-sm-2" v-model="max" placeholder="Search">
+        </div>
+        <input type="range" name="" id="" min="0" max="200" v-model="max">
+        <!-- melakuakan perulangan v-for dan kondisi v-if -->
+        <div v-for="item in products" v-if="item.price <= Number(max)">
+            <img :class="img-fluid" :src="item.image" :alt="name">
+            <h2>{{ item.name }}</h2>
+            <p>{{ name }}</p>
+            <div class="h3">Rp{{ item.price }}</div>
+            <!-- event  -->
+            <div class="col-1 m-auto">
+                <button class="btn btn-info" v-on:click="addItem(item)">+</button>
+            </div>
+        </div>
+        <!-- cara bind dan manggil -->
+        <div class="h3">{{ products[0].name }}</div>1
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
